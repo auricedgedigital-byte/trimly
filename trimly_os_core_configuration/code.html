@@ -1,0 +1,495 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trimly OS - Settings &amp; Integrations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#2f3131",
+                      "secondary": "#d8c4a4",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-secondary-container": "#c6b294",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "tertiary-container": "#a3a4a4",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#d2c4b5",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary-fixed": "#281800",
+                      "inverse-on-surface": "#313030",
+                      "surface-tint": "#ebc07e",
+                      "background": "#131313",
+                      "primary-fixed": "#ffddae",
+                      "on-primary-container": "#4f3400",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-primary-fixed-variant": "#5e410b",
+                      "on-tertiary-container": "#383a3b",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-primary": "#432c00",
+                      "surface": "#131313",
+                      "secondary-container": "#53452d",
+                      "on-background": "#e5e2e1",
+                      "surface-bright": "#3a3939",
+                      "on-secondary-fixed": "#241a06",
+                      "secondary-fixed-dim": "#d8c4a4",
+                      "surface-variant": "#353534",
+                      "outline-variant": "#4e4539",
+                      "primary": "#ebc07e",
+                      "inverse-primary": "#795921",
+                      "surface-dim": "#131313",
+                      "surface-container-high": "#2a2a2a",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#ebc07e",
+                      "on-secondary": "#3b2f18",
+                      "primary-container": "#c59d5f",
+                      "outline": "#9b8f81",
+                      "tertiary": "#c6c6c7",
+                      "surface-container": "#201f1f",
+                      "inverse-surface": "#e5e2e1",
+                      "on-secondary-fixed-variant": "#53452d",
+                      "secondary-fixed": "#f5e0bf",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "xxl": "80px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "container-max": "1440px",
+                      "lg": "24px",
+                      "xl": "40px",
+                      "gutter": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-base": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "body-sm": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "headline-md": [
+                              "EB Garamond", "serif"
+                      ],
+                      "title-sm": [
+                              "Hanken Grotesk", "sans-serif"
+                      ],
+                      "display-lg": [
+                              "EB Garamond", "serif"
+                      ]
+              },
+              "fontSize": {
+                      "body-base": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+        }
+        
+        .glass-card {
+            background: rgba(31, 31, 31, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .magnetic-button {
+            transition: all 400ms cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magnetic-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: rgba(197, 157, 95, 0.2);
+            border-radius: 50%;
+            transition: width 0.4s ease-out, height 0.4s ease-out;
+            z-index: 0;
+        }
+
+        .magnetic-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .magnetic-button > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .minimal-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #1F1F1F;
+            border-radius: 0;
+            transition: border-color 0.3s ease;
+        }
+        
+        .minimal-input:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: #C59D5F;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen font-body-base text-body-base bg-background text-on-surface antialiased overflow-x-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full w-64 fixed left-0 top-0 bg-surface-container dark:bg-surface-container-low backdrop-blur-2xl border-r border-white/5 shadow-2xl z-40 py-xl">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-primary dark:text-primary uppercase tracking-widest">Trimly OS</h1>
+</div>
+<div class="flex flex-col gap-unit flex-1 px-sm"><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="#">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">grid_view</span>
+  <span class="font-title-sm text-title-sm">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="#">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">calendar_today</span>
+  <span class="font-title-sm text-title-sm">Schedule</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="#">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person_search</span>
+  <span class="font-title-sm text-title-sm">Clients</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="{{DATA:SCREEN:SCREEN_11}}">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">campaign</span>
+  <span class="font-title-sm text-title-sm">Campaigns</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="{{DATA:SCREEN:SCREEN_7}}">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bar_chart</span>
+  <span class="font-title-sm text-title-sm">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="{{DATA:SCREEN:SCREEN_2}}">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+  <span class="font-title-sm text-title-sm">Website</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 rounded-DEFAULT" href="#">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+  <span class="font-title-sm text-title-sm">AI Feed</span>
+</a>
+<a class="bg-primary/10 text-primary border-r-4 border-primary px-lg py-md flex items-center gap-sm rounded-l-DEFAULT" href="#">
+  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+  <span class="font-title-sm text-title-sm font-bold">Settings</span>
+</a></div>
+<div class="px-lg mt-auto">
+<button class="magnetic-button w-full border border-primary-container text-primary-container py-md rounded-DEFAULT font-label-caps text-label-caps uppercase tracking-widest mb-lg">
+<span class="">New Appointment</span>
+</button>
+<div class="flex flex-col gap-sm border-t border-white/5 pt-lg">
+<a class="text-on-surface-variant hover:text-on-surface flex items-center gap-sm transition-all duration-400" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface flex items-center gap-sm transition-all duration-400" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-body-sm text-body-sm">Log Out</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- TopAppBar (Mobile & Global Header Logic) -->
+<header class="md:hidden flex justify-between items-center px-gutter w-full h-xxl bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-sm docked full-width top-0 sticky z-50">
+<h1 class="font-headline-md text-primary dark:text-primary tracking-tighter">Trimly</h1>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-gutter md:p-xl max-w-[1440px] mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-xxl max-w-3xl">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-sm">Settings &amp; Integrations</h2>
+<p class="font-body-base text-body-base text-on-surface-variant">Configure your elite barbering ecosystem. Manage shop details, AI engine preferences, and financial integrations.</p>
+</div>
+<!-- Settings Grid - Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-lg">
+<!-- Shop Settings -->
+<div class="glass-card rounded-xl p-lg flex flex-col gap-lg xl:col-span-2">
+<div class="flex items-center justify-between border-b border-white/10 pb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">storefront</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">Integrated Shop Settings</h3>
+</div>
+<button class="text-primary-container font-label-caps text-label-caps hover:text-primary transition-colors uppercase">Edit</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Shop Name</label>
+<input class="minimal-input font-body-base text-body-base text-on-surface w-full py-sm" readonly="" type="text" value="Executive Barber Studio">
+</div>
+<div class="flex flex-col gap-xs mt-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Location</label>
+<input class="minimal-input font-body-base text-body-base text-on-surface w-full py-sm" readonly="" type="text" value="1200 Luxury Ave, Suite 400, NY">
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Operating Hours</label>
+<div class="flex justify-between items-center py-xs border-b border-white/5">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mon - Fri</span>
+<span class="font-body-sm text-body-sm text-on-surface">9:00 AM - 8:00 PM</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-white/5">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Saturday</span>
+<span class="font-body-sm text-body-sm text-on-surface">10:00 AM - 6:00 PM</span>
+</div>
+<div class="flex justify-between items-center py-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sunday</span>
+<span class="font-body-sm text-body-sm text-on-surface opacity-50">Closed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Integrations -->
+<div class="glass-card rounded-xl p-lg flex flex-col gap-md">
+<div class="flex items-center gap-sm border-b border-white/10 pb-md mb-sm">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">Payment Integrations</h3>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-high rounded-lg border border-white/5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+<span class="font-headline-md text-[#635BFF] font-bold text-[20px]">S</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface">Stripe</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Main Processor</p>
+</div>
+</div>
+<div class="flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-caps text-label-caps">Connected</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-high rounded-lg border border-white/5">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-black border border-white/20 rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white">ios</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface">Apple Pay</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tap to Pay</p>
+</div>
+</div>
+<div class="flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-caps text-label-caps">Connected</span>
+</div>
+</div>
+<button class="mt-auto w-full border border-white/10 hover:border-primary/50 text-on-surface-variant hover:text-primary py-sm rounded-DEFAULT transition-colors font-label-caps text-label-caps">
+                    + Add Payment Method
+                </button>
+</div>
+<!-- AI Engine Settings -->
+<div class="glass-card rounded-xl p-lg flex flex-col gap-md xl:col-span-1">
+<div class="flex items-center justify-between border-b border-white/10 pb-md mb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">AI Engine</h3>
+</div>
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(235,192,126,0.8)]"></div>
+</div>
+<div class="space-y-lg">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-title-sm text-title-sm text-on-surface">OpenRouter</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">LLM Provider</p>
+</div>
+<button class="text-primary-container font-label-caps text-label-caps hover:text-primary transition-colors">Configure</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-title-sm text-title-sm text-on-surface">Twilio SMS</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automated Comms</p>
+</div>
+<button class="text-primary-container font-label-caps text-label-caps hover:text-primary transition-colors">Configure</button>
+</div>
+<div class="pt-sm border-t border-white/5">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-sm">SMS Templates</p>
+<div class="bg-surface-container-lowest p-sm border-l-2 border-primary-container">
+<p class="font-body-sm text-body-sm text-on-surface italic">"Hi {{client_name}}, your elite grooming session at Trimly is confirmed for {{time}}."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Team Management -->
+<div class="glass-card rounded-xl p-lg flex flex-col gap-md xl:col-span-2">
+<div class="flex items-center justify-between border-b border-white/10 pb-md mb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">Team Management</h3>
+</div>
+<button class="text-primary-container font-label-caps text-label-caps hover:text-primary transition-colors uppercase">+ Add Barber</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/10">
+<th class="py-sm font-label-caps text-label-caps text-on-surface-variant font-normal">Barber</th>
+<th class="py-sm font-label-caps text-label-caps text-on-surface-variant font-normal">Role</th>
+<th class="py-sm font-label-caps text-label-caps text-on-surface-variant font-normal">Performance (30d)</th>
+<th class="py-sm font-label-caps text-label-caps text-on-surface-variant font-normal text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr>
+<td class="py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-white/10">
+<img alt="Marcus" class="w-full h-full object-cover" data-alt="A cinematic, high-contrast portrait of a male barber with a well-groomed beard, wearing a dark apron against a black background. The lighting is moody and dramatic, typical of a luxury barbershop aesthetic. The image exudes professionalism and elite service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPe-5Nes1XSjGIUqgIXgfi38oDeE1SQxN0DiFOmTu4ZGGrsFIrFQaYoko0bU1fKPDzqCcbJUr8vE007k143pq-htyfBeeSE-8zWLFahOjFJBOaUqSJpuaEL7Ni6d0ga1KgdmrQ51KsWdVv8kVFVHlvGcUoj4YcPBR7q3NM5U1-FGHH6jhxvR5Rc4drvtT12JLyxnFnGXnkJtSL5H5mFuYDdy_H_PK0P9ksJv2hVWIwOrmF9nTzWTgnc_DAkEgUs3AZv47BjPPsfcAr">
+</div>
+<span class="font-title-sm text-title-sm text-on-surface">Marcus T.</span>
+</div>
+</td>
+<td class="py-md font-body-sm text-body-sm text-on-surface-variant">Master Barber</td>
+<td class="py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">star</span>
+<span class="font-body-sm text-body-sm text-on-surface">4.9</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">(124 cuts)</span>
+</div>
+</td>
+<td class="py-md text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#4ade80]/10 text-[#4ade80] font-label-caps text-[10px]">Active</span>
+</td>
+</tr>
+<tr>
+<td class="py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-white/10">
+<img alt="Julian" class="w-full h-full object-cover" data-alt="A sharp, minimalist portrait of a stylish young male barber looking slightly off-camera. He is lit by a subtle golden rim light that matches the Trimly luxury brand palette. The background is a deep, dark charcoal canvas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3PUEHjkXD83jp7sB68iW-otJht6SzDMs7utslSBGyGc3SR-Gml3-sRRVafBIFHBlWKQWoGJWZh9T9OyJ_FU413xFBA9PQsdjRj3-Kx_NYxSje3xcYY1kMNxxI8TfnG5-ggOpxuQCAAxGJr8kAkLJ3ZtwUDp38wKz903FUFoC9g7s1YB-Iay5vqnPrT0tMt1z68E5tZzYNqMUp2W4MacMp8wvNKqBhFvj3-16-mngw8HQmMErNUSUAYw9Lj8vi0xxAXwlmQzC0E7-n">
+</div>
+<span class="font-title-sm text-title-sm text-on-surface">Julian R.</span>
+</div>
+</td>
+<td class="py-md font-body-sm text-body-sm text-on-surface-variant">Senior Barber</td>
+<td class="py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">star</span>
+<span class="font-body-sm text-body-sm text-on-surface">4.8</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">(98 cuts)</span>
+</div>
+</td>
+<td class="py-md text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#4ade80]/10 text-[#4ade80] font-label-caps text-[10px]">Active</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Branding -->
+<div class="glass-card rounded-xl p-lg flex flex-col gap-md">
+<div class="flex items-center gap-sm border-b border-white/10 pb-md mb-sm">
+<span class="material-symbols-outlined text-primary">palette</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">Branding</h3>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-sm">Color Palette</p>
+<div class="flex gap-sm">
+<div class="w-8 h-8 rounded-full bg-[#0D0D0D] border border-white/20"></div>
+<div class="w-8 h-8 rounded-full bg-[#151515] border border-white/20"></div>
+<div class="w-8 h-8 rounded-full bg-[#C59D5F] border border-white/20"></div>
+<div class="w-8 h-8 rounded-full bg-[#FFFFFF] border border-white/20"></div>
+</div>
+</div>
+<div class="mt-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-sm">Logo Upload</p>
+<div class="border-2 border-dashed border-white/10 hover:border-primary/50 transition-colors rounded-lg p-xl flex flex-col items-center justify-center cursor-pointer bg-surface-container-lowest">
+<span class="material-symbols-outlined text-on-surface-variant mb-sm text-[32px]">cloud_upload</span>
+<p class="font-body-sm text-body-sm text-on-surface">Drop transparent PNG here</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-xs opacity-50">Max 2MB</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+
+
+</body></html>

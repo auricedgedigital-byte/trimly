@@ -1,0 +1,464 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trimly OS - CRM</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#2f3131",
+                      "secondary": "#d8c4a4",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-secondary-container": "#c6b294",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "tertiary-container": "#a3a4a4",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#d2c4b5",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary-fixed": "#281800",
+                      "inverse-on-surface": "#313030",
+                      "surface-tint": "#ebc07e",
+                      "background": "#131313",
+                      "primary-fixed": "#ffddae",
+                      "on-primary-container": "#4f3400",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-primary-fixed-variant": "#5e410b",
+                      "on-tertiary-container": "#383a3b",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-primary": "#432c00",
+                      "surface": "#131313",
+                      "secondary-container": "#53452d",
+                      "on-background": "#e5e2e1",
+                      "surface-bright": "#3a3939",
+                      "on-secondary-fixed": "#241a06",
+                      "secondary-fixed-dim": "#d8c4a4",
+                      "surface-variant": "#353534",
+                      "outline-variant": "#4e4539",
+                      "primary": "#ebc07e",
+                      "inverse-primary": "#795921",
+                      "surface-dim": "#131313",
+                      "surface-container-high": "#2a2a2a",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#ebc07e",
+                      "on-secondary": "#3b2f18",
+                      "primary-container": "#c59d5f",
+                      "outline": "#9b8f81",
+                      "tertiary": "#c6c6c7",
+                      "surface-container": "#201f1f",
+                      "inverse-surface": "#e5e2e1",
+                      "on-secondary-fixed-variant": "#53452d",
+                      "secondary-fixed": "#f5e0bf",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "xxl": "80px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "container-max": "1440px",
+                      "lg": "24px",
+                      "xl": "40px",
+                      "gutter": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-base": ["hankenGrotesk", "sans-serif"],
+                      "label-caps": ["hankenGrotesk", "sans-serif"],
+                      "body-sm": ["hankenGrotesk", "sans-serif"],
+                      "headline-md": ["ebGaramond", "serif"],
+                      "title-sm": ["hankenGrotesk", "sans-serif"],
+                      "display-lg": ["ebGaramond", "serif"]
+              },
+              "fontSize": {
+                      "body-base": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                      "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                      "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                      "headline-md": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                      "title-sm": ["18px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Utilities for Design System */
+        .glass-panel {
+            background-color: rgba(28, 27, 27, 0.6); /* surface-container-low with opacity */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+        }
+        
+        .magnetic-btn {
+            transition: all 400ms cubic-bezier(0.19, 1, 0.22, 1); /* Ease-Out-Expo */
+        }
+        .magnetic-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 30px -10px rgba(197, 157, 95, 0.2); /* primary-container glow */
+        }
+
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base antialiased h-screen w-full flex overflow-hidden">
+<!-- SideNavBar (Desktop Shell) -->
+<nav class="hidden md:flex flex-col h-full py-xl bg-surface-container dark:bg-surface-container-low backdrop-blur-2xl docked left-0 w-64 fixed border-r border-white/5 shadow-2xl z-40">
+<!-- Header / Identity -->
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-md mb-md">
+<img alt="Executive Barber Profile" class="w-12 h-12 rounded-full border border-primary-container object-cover" data-alt="A cinematic close-up of a distinguished barber with a sharp beard, wearing a bespoke dark apron in a dimly lit, high-end grooming studio. The lighting is moody with gold rim highlights, fitting a luxurious dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzt0pmT9wNjBJYhtMkMKHtxW33gr9s5yc_wv0xYCGfY8orYb7_6rc2HCcU-_B0cSQVdM0lyrTVARrLWH81yKYuJk5lGXgHBAvDSzfZC5L3azuW8pby29SPSzcFAhn7sQLwjCkICnPKW-SI_jwAke99VmvYKKJb8rMX5SWKSsa6CCjFElP9HvLohaKDnCHyt56ib_hweFVRfx4xbwBWruu5QsjlRIFNNoOEbIDUcWhFsvhdjiha7XJGg6L0Lk7SAP-BE9nM3JRAETiB">
+<div>
+<h1 class="font-title-sm text-title-sm text-on-surface">Trimly OS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mt-xs">Elite Tier</p>
+</div>
+</div>
+<button class="w-full magnetic-btn bg-surface-container-high border border-primary/30 text-primary font-title-sm text-title-sm rounded-lg py-sm px-md flex items-center justify-center gap-sm hover:bg-primary/10">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Appointment
+            </button>
+</div>
+<!-- Primary Navigation -->
+<div class="flex-1 flex flex-col gap-xs"><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-title-sm text-title-sm">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-title-sm text-title-sm">Schedule</span>
+</a>
+<!-- Active State -->
+<a class="bg-primary/10 text-primary border-r-4 border-primary px-lg py-md flex items-center gap-sm" href="#">
+<span class="material-symbols-outlined filled">person_search</span>
+<span class="font-title-sm text-title-sm">Clients</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-title-sm text-title-sm">AI Feed</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-title-sm text-title-sm">Campaigns</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-title-sm text-title-sm">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">language</span>
+<span class="font-title-sm text-title-sm">Website</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">recenter</span>
+<span class="font-title-sm text-title-sm">Settings</span>
+</a></div>
+<!-- Footer Navigation -->
+<div class="mt-auto flex flex-col gap-xs pb-lg">
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-title-sm text-title-sm">Support</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 ease-out-expo" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-title-sm text-title-sm">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col ml-0 md:ml-64 relative h-full">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-gutter w-full h-xxl bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-sm top-0 sticky z-50">
+<div class="flex items-center gap-md">
+<span class="md:hidden material-symbols-outlined text-primary text-[28px] cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tighter">Trimly</h1>
+</div>
+<div class="flex items-center gap-lg">
+<!-- Search -->
+<div class="hidden sm:flex items-center glass-panel rounded-full px-md py-sm border-b-0">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm text-on-surface placeholder-on-surface-variant w-48 outline-none" placeholder="Search Elite Roster..." type="text">
+</div>
+<!-- Trailing Actions -->
+<button class="text-on-surface-variant dark:text-on-surface-variant/70 hover:text-primary transition-colors hover:bg-white/5 p-sm rounded-full duration-400 ease-out active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant/70 hover:text-primary transition-colors hover:bg-white/5 p-sm rounded-full duration-400 ease-out active:scale-95">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- CRM Dashboard Content -->
+<div class="flex-1 flex overflow-hidden p-gutter gap-gutter max-w-container-max mx-auto w-full">
+<!-- Left Column: Client List (Roster) -->
+<div class="w-full lg:w-5/12 xl:w-1/3 flex flex-col gap-md h-full">
+<!-- Roster Header & Filters -->
+<div class="flex flex-col gap-sm shrink-0">
+<h2 class="font-display-lg text-headline-md text-on-surface tracking-tight">Client Roster</h2>
+<!-- Pipeline Segments -->
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-xs">
+<button class="magnetic-btn px-md py-xs rounded-full border border-primary bg-primary/10 text-primary font-label-caps text-label-caps whitespace-nowrap">
+                            All Elite
+                        </button>
+<button class="magnetic-btn px-md py-xs rounded-full border border-white/10 bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:border-white/20 font-label-caps text-label-caps whitespace-nowrap">
+                            VIP
+                        </button>
+<button class="magnetic-btn px-md py-xs rounded-full border border-error/30 bg-error/5 text-error hover:bg-error/10 font-label-caps text-label-caps whitespace-nowrap flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                            Reactivation Needed
+                        </button>
+</div>
+</div>
+<!-- Scrollable List -->
+<div class="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-sm pb-xxl">
+<!-- Client Card: Selected / High-Roller -->
+<div class="glass-panel p-md rounded-xl cursor-pointer border-primary/50 bg-primary/5 relative overflow-hidden group">
+<!-- Active Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-md">
+<img alt="Client Avatar" class="w-14 h-14 rounded-lg object-cover border border-white/10" data-alt="A cinematic portrait of a sophisticated male client in his 30s. He is well-dressed in a dark tailored suit. The lighting is dramatic and moody, utilizing deep shadows and soft champagne-colored highlights that perfectly match a luxury dark canvas aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtivnZpLV9TeQ3I79NTb60v6_RPozPt061w2NouCwk7z9WlchNBZ8Xqbh0jReqSgLUWWihlJ-A1SbZ-Oxjf31Vv76qZpL3qpvTK8e0a63mG2ZoGcFf5SxUqkcLbWZm97Iged2R7VIBeEWn-1yOUChS18JGWZvsgsGpzRWXZylM4tnhNnr1YNTMJyaD1om0aQ8_gpSeC9-BY9X8dyE8QbmlU2BD3oDP9vBi32pzGguOQ0jSjRFaAG4C1dVQNjUlYnSlrXLGM0nSAuY9">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Julian Vance</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Last visit: 6 weeks ago</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="font-headline-md text-[20px] text-primary">98<span class="text-[14px] text-primary/70">%</span></span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Mastery</span>
+</div>
+</div>
+<div class="flex gap-xs mt-md">
+<span class="px-sm py-[2px] rounded border border-primary/20 bg-primary/10 text-primary font-label-caps text-[10px] uppercase">High-Roller</span>
+<span class="px-sm py-[2px] rounded border border-error/20 bg-error/10 text-error font-label-caps text-[10px] uppercase">Reactivation Needed</span>
+</div>
+</div>
+<!-- Client Card: Standard / VIP -->
+<div class="glass-panel p-md rounded-xl cursor-pointer hover:bg-surface-bright/30 transition-all duration-400 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-md">
+<img alt="Client Avatar" class="w-14 h-14 rounded-lg object-cover border border-white/10 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A moody, high-contrast portrait of an older gentleman client with silver hair. Shot against a dark background with rim lighting that creates a sophisticated, elite aesthetic. The image tone aligns with a cinematic noir UI theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxZb-Dbhk_p2AiP_DFL6vYFIrFmV6NTIXk5LG3vHrB5fT-tU840Y5zL3RMMwdoycycri9NAL1eGD_FyJgJ0fDunAGqGdwKXaiMNK--iVYZ6VTdF7JeaFv6zcxyQR1RnUMU1Zv1Fy5e5kP3FbkG7kakSFCUp9oU8w6BoEPnPEyMnmrTbnxlMHMspznGToZVvY3tUiehxWjWXtZJKlMtKvPYleP8xUZR_ok8QXRjESVfrMHXr3gbfZCwMbsNVn2x6lqbW0w85CH2qQUB">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Marcus Thorne</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Last visit: 2 weeks ago</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="font-headline-md text-[20px] text-on-surface">85<span class="text-[14px] text-on-surface-variant">%</span></span>
+</div>
+</div>
+<div class="flex gap-xs mt-md">
+<span class="px-sm py-[2px] rounded border border-secondary/20 bg-secondary/10 text-secondary font-label-caps text-[10px] uppercase">VIP</span>
+</div>
+</div>
+<!-- Client Card: Regular -->
+<div class="glass-panel p-md rounded-xl cursor-pointer hover:bg-surface-bright/30 transition-all duration-400 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-lg bg-surface-container-highest flex items-center justify-center border border-white/5">
+<span class="font-headline-md text-on-surface-variant">EW</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Elias Wright</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Last visit: 3 days ago</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="font-headline-md text-[20px] text-on-surface">62<span class="text-[14px] text-on-surface-variant">%</span></span>
+</div>
+</div>
+<div class="flex gap-xs mt-md">
+<span class="px-sm py-[2px] rounded border border-white/10 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] uppercase">Regular</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Profile Detail Side-Panel (Bento Grid Style) -->
+<div class="hidden lg:flex flex-1 glass-panel rounded-xl flex-col overflow-hidden relative">
+<!-- Hero Image & Header -->
+<div class="relative h-64 shrink-0 w-full bg-surface-container-lowest">
+<img alt="Julian Vance Profile Background" class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="A wide, cinematic portrait of a male client in a barber's chair. The image is styled with a profound noir aesthetic, utilizing deep shadows, a dark background, and strategic golden highlights that perfectly emulate a luxury, high-performance atmosphere. The edges bleed into pure black." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0q_Uh_b3CX31w6PUsLA9kJt49KCWlGM7UrnJCEyhdnNLo1MvXcv0HDaUXOK_RfWmZHRBtbhCGaQfLP4MYJUf3XQNvbd3UFz1kR_bql_UE0Re6L1-Xvh_dEJy6WQuar_k9sLZpdjHNMAsMJYuyJT3JknYdVNJsLk-kW-up0K2WVPxAzZgkVwyLzOBVfk6O11vg2W3PKu6ngNvuu41H9iHSgSrXXUs81pDOb5jH2UF-qazupGlP-XEyepZIN1ao0EznimzkrHbZeN1n">
+<!-- Vignette Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/60 to-transparent"></div>
+<!-- Header Content -->
+<div class="absolute bottom-0 left-0 w-full p-lg flex justify-between items-end">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-sm py-[2px] rounded border border-primary/30 bg-primary/20 text-primary font-label-caps text-[12px] uppercase backdrop-blur-md">High-Roller</span>
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px] filled">verified</span>
+</span>
+</div>
+<h2 class="font-display-lg text-[48px] leading-none text-on-surface">Julian Vance</h2>
+</div>
+<div class="flex gap-md">
+<button class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary hover:border-primary/50 transition-colors magnetic-btn">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-primary text-on-primary-container flex items-center justify-center hover:bg-primary-fixed transition-colors magnetic-btn shadow-[0_0_20px_rgba(235,192,126,0.3)]">
+<span class="material-symbols-outlined">calendar_add_on</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Grid Content Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar p-lg flex flex-col gap-lg bg-surface-container-lowest/50">
+<!-- Top Metrics Row -->
+<div class="grid grid-cols-3 gap-md">
+<div class="glass-panel p-md rounded-lg flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-xs">Lifetime Value</span>
+<span class="font-headline-md text-headline-md text-primary">$4,250</span>
+</div>
+<div class="glass-panel p-md rounded-lg flex flex-col justify-center border-error/20 bg-error/5 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-error/30"></div>
+<span class="font-label-caps text-label-caps text-error uppercase mb-xs">Last Visit</span>
+<span class="font-headline-md text-title-sm text-on-surface mt-sm">6 Weeks Ago</span>
+<span class="font-body-sm text-[12px] text-error mt-xs">Action Required</span>
+</div>
+<div class="glass-panel p-md rounded-lg flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-xs">Mastery Score</span>
+<div class="flex items-end gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">98</span>
+<span class="font-body-sm text-on-surface-variant mb-[4px]">/ 100</span>
+</div>
+</div>
+</div>
+<!-- Main Body Split -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-lg h-full">
+<!-- Left: Notes & Intelligence -->
+<div class="flex flex-col gap-md">
+<!-- Style Notes Card -->
+<div class="glass-panel rounded-xl p-lg flex-1 relative">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-title-sm text-title-sm text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">psychology</span>
+                                        AI Style Notes
+                                    </h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<div class="space-y-md">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-xs tracking-widest">Current Formula</p>
+<p class="font-body-base text-body-base text-on-surface leading-relaxed border-l-2 border-primary/50 pl-md py-xs bg-gradient-to-r from-primary/5 to-transparent">
+                                            0.5 High Fade, keeping weight at the parietal ridge. Heavily textured crop on top. Finish with matte clay powder for dry volume.
+                                        </p>
+</div>
+<div class="pt-sm border-t border-white/5">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-sm tracking-widest">Client Preferences</p>
+<ul class="space-y-xs">
+<li class="flex items-center gap-sm font-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
+                                                Prefers a silent appointment.
+                                            </li>
+<li class="flex items-center gap-sm font-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
+                                                Beverage: Bourbon, neat.
+                                            </li>
+<li class="flex items-center gap-sm font-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
+                                                Sensitive skin on the neck (use foil shaver lightly).
+                                            </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: History & Visuals -->
+<div class="flex flex-col gap-md">
+<!-- Style Photos Gallery -->
+<div class="glass-panel rounded-xl p-md">
+<div class="flex justify-between items-center mb-sm px-xs">
+<h3 class="font-title-sm text-title-sm text-on-surface text-[14px] uppercase tracking-widest">Style Photos</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">photo_library</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="relative aspect-square rounded-lg overflow-hidden border border-white/10 group cursor-pointer">
+<img alt="Style Photo 1" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close up shot of a perfectly executed high skin fade on a male model. The image is black and white, highlighting the sharp contrast and precision of the barber's work. The background is completely dark." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ki5l4dExohIck4I442hyW8CqKioyrNKqxVD9SXrrtx3bJFP8412cRDNIeM0eWNphlYH6O91te0pb0cSVn4LH8blzOEX1--ZEykY97uoyYTb_iwhl5-IYTTKSUgAjNvTvEaSGXWpiOfnxNvfZsZtvjnSEHIJUsl-Kjpx8tvw1JIAmI86X4jTDrsAPLbYvg0pwF2r6M_3LHRbJ1p8800SJpSP7gsZIy6bScPhiTJou6g4UMJ3vKBN1-jQugAoHki1UcTzQQmzjUGZn">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>
+<div class="relative aspect-square rounded-lg overflow-hidden border border-white/10 group cursor-pointer bg-surface-container-highest flex flex-col items-center justify-center hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[32px] mb-xs">add_a_photo</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">Add Reference</span>
+</div>
+</div>
+</div>
+<!-- History Timeline -->
+<div class="glass-panel rounded-xl p-lg flex-1">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-md">Visit History</h3>
+<div class="relative border-l border-white/10 ml-sm space-y-lg pb-sm">
+<!-- Timeline Item 1 -->
+<div class="relative pl-lg">
+<div class="absolute -left-[5px] top-1 w-[9px] h-[9px] rounded-full bg-primary shadow-[0_0_10px_rgba(235,192,126,0.5)]"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-title-sm text-[14px] text-on-surface">Executive Haircut &amp; Beard</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-xs">Completed by Master Barber</p>
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant bg-surface-container-highest px-sm py-xs rounded">Oct 12</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-lg">
+<div class="absolute -left-[4px] top-1 w-[7px] h-[7px] rounded-full bg-white/30"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-title-sm text-[14px] text-on-surface-variant">Standard Haircut</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant/50 mt-xs">Notes updated.</p>
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant/50">Sep 04</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-md text-center py-sm font-label-caps text-[10px] text-primary hover:text-primary-fixed uppercase tracking-widest transition-colors">
+                                    View Full Ledger
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

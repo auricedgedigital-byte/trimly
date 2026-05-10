@@ -1,0 +1,325 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trimly - AI Receptionist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=EB+Garamond:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary": "#2f3131",
+                        "secondary": "#d8c4a4",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-container": "#c6b294",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-container": "#a3a4a4",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#d2c4b5",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#281800",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#ebc07e",
+                        "background": "#131313",
+                        "primary-fixed": "#ffddae",
+                        "on-primary-container": "#4f3400",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#5e410b",
+                        "on-tertiary-container": "#383a3b",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-primary": "#432c00",
+                        "surface": "#131313",
+                        "secondary-container": "#53452d",
+                        "on-background": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-secondary-fixed": "#241a06",
+                        "secondary-fixed-dim": "#d8c4a4",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#4e4539",
+                        "primary": "#ebc07e",
+                        "inverse-primary": "#795921",
+                        "surface-dim": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#ebc07e",
+                        "on-secondary": "#3b2f18",
+                        "primary-container": "#c59d5f",
+                        "outline": "#9b8f81",
+                        "tertiary": "#c6c6c7",
+                        "surface-container": "#201f1f",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#53452d",
+                        "secondary-fixed": "#f5e0bf",
+                        "on-error-container": "#ffdad6"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        unit: "4px",
+                        xxl: "80px",
+                        sm: "8px",
+                        xs: "4px",
+                        "container-max": "1440px",
+                        lg: "24px",
+                        xl: "40px",
+                        gutter: "24px",
+                        md: "16px"
+                    },
+                    fontFamily: {
+                        "body-base": ["Hanken Grotesk", "sans-serif"],
+                        "label-caps": ["Hanken Grotesk", "sans-serif"],
+                        "body-sm": ["Hanken Grotesk", "sans-serif"],
+                        "headline-md": ["EB Garamond", "serif"],
+                        "title-sm": ["Hanken Grotesk", "sans-serif"],
+                        "display-lg": ["EB Garamond", "serif"]
+                    },
+                    fontSize: {
+                        "body-base": ["16px", { lineHeight: "1.6", letterSpacing: "0.01em", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "700" }],
+                        "body-sm": ["14px", { lineHeight: "1.5", letterSpacing: "0.02em", fontWeight: "400" }],
+                        "headline-md": ["32px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "400" }],
+                        "title-sm": ["18px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(31, 31, 31, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        .magnetic-button {
+            transition: all 400ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .magnetic-button:hover {
+            transform: translate(0, -2px);
+            box-shadow: 0 10px 20px -10px rgba(197, 157, 95, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full fixed w-64 left-0 top-0 bg-surface-container-low backdrop-blur-2xl border-r border-white/5 shadow-2xl py-xl z-50">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md text-primary tracking-widest uppercase">Trimly OS</h1>
+<div class="flex items-center gap-sm mt-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="Executive Barber Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ5cUyu6LxKeaOVCFlWC0M3Wk4-f69abJD_aSgicYw5mC0drT_Vj2ncRs1HKqlrlcXua2s-Wp0t4_DnU-UzPbbimYjiy7S6kpLcPWSy0OG0lX0MLfj5f7-dDHf14iGixk_Tdltw9ZOpBk3-4aIoX8TqrRdhO_XZO0Cs8udoc3mtwG8I6LA8p5lg2ICZDDbBTBIifx33jw1RSVvjXiehulZSsDW1D0n36fRK68_GMzJrQoRXDylbrYFOyoTNNigLOTwoudGjRit4iQS">
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface">Executive Barber</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Elite Tier</p>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-sm"><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">grid_view</span><span class="font-label-caps text-label-caps">Dashboard</span></a><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">calendar_today</span><span class="font-label-caps text-label-caps">Schedule</span></a><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person_search</span><span class="font-label-caps text-label-caps">Clients</span></a><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="{{DATA:SCREEN:SCREEN_11}}"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">campaign</span><span class="font-label-caps text-label-caps">Campaigns</span></a><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="{{DATA:SCREEN:SCREEN_7}}"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bar_chart</span><span class="font-label-caps text-label-caps">Analytics</span></a><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="{{DATA:SCREEN:SCREEN_2}}"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span><span class="font-label-caps text-label-caps">Website</span></a><a class="bg-primary/10 text-primary border-r-4 border-primary px-lg py-md flex items-center gap-sm transition-all duration-400" href="{{DATA:SCREEN:SCREEN_9}}"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span><span class="font-label-caps text-label-caps font-bold">AI Feed</span></a><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">recenter</span><span class="font-label-caps text-label-caps">Settings</span></a></div>
+<div class="px-lg mt-auto flex flex-col gap-sm">
+<button class="magnetic-button w-full py-md bg-surface border border-primary text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                New Appointment
+            </button>
+<a class="text-on-surface-variant hover:text-on-surface py-md flex items-center gap-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface py-md flex items-center gap-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden flex justify-between items-center px-gutter w-full h-xxl bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-sm border-b border-white/10">
+<div class="font-headline-md text-headline-md text-primary tracking-tighter">Trimly</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-sm rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-sm rounded-full">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 relative h-screen overflow-y-auto p-gutter lg:p-xl scroll-smooth">
+<!-- Header Section -->
+<div class="mb-xxl max-w-container-max mx-auto">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-sm tracking-tighter">AI Receptionist</h2>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">
+                        Real-time call handling, autonomous booking, and intelligent client routing. System active and monitoring.
+                    </p>
+</div>
+<div class="hidden lg:flex items-center gap-sm bg-surface-container-high px-md py-sm rounded-full border border-white/5">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-on-surface">System Online</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-lg pb-xxl">
+<!-- Live Feed (Main Column) -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Current Active Call -->
+<div class="glass-panel rounded-xl p-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary">record_voice_over</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Active Call: Michael T.</h3>
+<p class="font-body-sm text-body-sm text-primary">00:02:14</p>
+</div>
+</div>
+<span class="bg-primary/10 text-primary px-sm py-xs rounded font-label-caps text-label-caps border border-primary/20">Listening</span>
+</div>
+<div class="space-y-md mb-lg h-48 overflow-y-auto pr-sm custom-scrollbar">
+<div class="flex gap-md">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">person</span>
+</div>
+<div class="bg-surface-container p-md rounded-lg rounded-tl-none border border-white/5">
+<p class="font-body-sm text-body-sm text-on-surface">Yeah, hi. I need to get a fade before my flight tomorrow evening. Do you have anything around 4 PM?</p>
+</div>
+</div>
+<div class="flex gap-md flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+<span class="material-symbols-outlined text-primary text-[16px]">auto_awesome</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-lg rounded-tr-none border border-primary/10">
+<p class="font-body-sm text-body-sm text-on-surface">Hello Michael. I see you usually book with David. He has an opening at 4:15 PM tomorrow. Shall I lock that in for your standard Executive Fade?</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">person</span>
+</div>
+<div class="bg-surface-container p-md rounded-lg rounded-tl-none border border-white/5 flex items-center gap-sm">
+<div class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+<div class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+<div class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+</div>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="magnetic-button flex-1 py-sm bg-surface border border-white/10 rounded font-label-caps text-label-caps hover:bg-white/5 transition-colors">Takeover Call</button>
+<button class="magnetic-button flex-1 py-sm bg-primary/10 border border-primary text-primary rounded font-label-caps text-label-caps hover:bg-primary/20 transition-colors">Force Book 4:15 PM</button>
+</div>
+</div>
+<!-- Recent Call Summaries -->
+<div class="glass-panel rounded-xl p-lg">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-md">Recent Call Intelligence</h3>
+<div class="space-y-sm">
+<!-- Summary Item -->
+<div class="bg-surface-container p-md rounded-lg border border-white/5 hover:border-primary/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">check_circle</span>
+</div>
+<div>
+<p class="font-body-base text-body-base text-on-surface">Booked: Sarah for James</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kids Cut • Today, 2:00 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-primary mb-1">Confirmed</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">10m ago</p>
+</div>
+</div>
+<!-- Summary Item -->
+<div class="bg-surface-container p-md rounded-lg border border-white/5 hover:border-primary/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">info</span>
+</div>
+<div>
+<p class="font-body-base text-body-base text-on-surface">Inquiry: Pricing Details</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">New Client • AI sent SMS link</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-secondary mb-1">Resolved</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">45m ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar (Secondary Column) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- System Status -->
+<div class="glass-panel rounded-xl p-lg">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">tune</span>
+                        Auto-Reply Rules
+                    </h3>
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-base text-body-base text-on-surface">Missed Calls</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Send booking link via SMS</p>
+</div>
+<div class="w-10 h-5 bg-primary/30 rounded-full relative cursor-pointer border border-primary/50">
+<div class="w-4 h-4 bg-primary rounded-full absolute right-0.5 top-0.5"></div>
+</div>
+</div>
+<div class="h-px w-full bg-white/5"></div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-base text-body-base text-on-surface">After Hours</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AI Voice Voicemail</p>
+</div>
+<div class="w-10 h-5 bg-primary/30 rounded-full relative cursor-pointer border border-primary/50">
+<div class="w-4 h-4 bg-primary rounded-full absolute right-0.5 top-0.5"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Smart Recommendations -->
+<div class="glass-panel rounded-xl p-lg flex-1">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">insights</span>
+                        AI Insights
+                    </h3>
+<div class="bg-surface-container-high border border-white/5 rounded-lg p-md mb-md relative overflow-hidden">
+<div class="absolute right-0 top-0 w-16 h-16 bg-primary/10 rounded-bl-full blur-xl"></div>
+<p class="font-body-sm text-body-sm text-on-surface mb-sm">High call volume detected between 4PM - 6PM on Thursdays.</p>
+<button class="text-primary font-label-caps text-label-caps hover:text-primary-fixed transition-colors flex items-center gap-xs">
+                            Adjust AI Aggressiveness <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-high border border-white/5 rounded-lg p-md relative overflow-hidden">
+<p class="font-body-sm text-body-sm text-on-surface mb-sm">3 clients requested "Beard Trim" alongside standard cuts today. Consider bundling.</p>
+<button class="text-primary font-label-caps text-label-caps hover:text-primary-fixed transition-colors flex items-center gap-xs">
+                            Review Services <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+
+
+</body></html>

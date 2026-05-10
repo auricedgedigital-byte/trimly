@@ -1,0 +1,344 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trimly OS - Website Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=EB+Garamond:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#2f3131",
+                    "secondary": "#d8c4a4",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-secondary-container": "#c6b294",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "tertiary-container": "#a3a4a4",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "on-surface-variant": "#d2c4b5",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary-fixed": "#281800",
+                    "inverse-on-surface": "#313030",
+                    "surface-tint": "#ebc07e",
+                    "background": "#131313",
+                    "primary-fixed": "#ffddae",
+                    "on-primary-container": "#4f3400",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-primary-fixed-variant": "#5e410b",
+                    "on-tertiary-container": "#383a3b",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-primary": "#432c00",
+                    "surface": "#131313",
+                    "secondary-container": "#53452d",
+                    "on-background": "#e5e2e1",
+                    "surface-bright": "#3a3939",
+                    "on-secondary-fixed": "#241a06",
+                    "secondary-fixed-dim": "#d8c4a4",
+                    "surface-variant": "#353534",
+                    "outline-variant": "#4e4539",
+                    "primary": "#ebc07e",
+                    "inverse-primary": "#795921",
+                    "surface-dim": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#ebc07e",
+                    "on-secondary": "#3b2f18",
+                    "primary-container": "#c59d5f",
+                    "outline": "#9b8f81",
+                    "tertiary": "#c6c6c7",
+                    "surface-container": "#201f1f",
+                    "inverse-surface": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#53452d",
+                    "secondary-fixed": "#f5e0bf",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "xxl": "80px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "container-max": "1440px",
+                    "lg": "24px",
+                    "xl": "40px",
+                    "gutter": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-base": ["Hanken Grotesk", "sans-serif"],
+                    "label-caps": ["Hanken Grotesk", "sans-serif"],
+                    "body-sm": ["Hanken Grotesk", "sans-serif"],
+                    "headline-md": ["EB Garamond", "serif"],
+                    "title-sm": ["Hanken Grotesk", "sans-serif"],
+                    "display-lg": ["EB Garamond", "serif"]
+            },
+            "fontSize": {
+                    "body-base": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                    "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                    "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                    "headline-md": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                    "title-sm": ["18px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(31, 31, 31, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        .magnetic-btn {
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .magnetic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(197, 157, 95, 0.3);
+        }
+        .magnetic-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(197, 157, 95, 0.2) 0%, rgba(197, 157, 95, 0) 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.4s ease-out;
+            z-index: -1;
+        }
+        .magnetic-btn:hover::after {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #ebc07e;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #c59d5f;
+        }
+        .input-line {
+            border: none;
+            border-bottom: 1px solid #1F1F1F;
+            background: transparent;
+            transition: border-color 0.3s ease;
+        }
+        .input-line:focus {
+            outline: none;
+            border-bottom-color: #c59d5f;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex antialiased">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex flex-col h-full py-xl bg-surface-container dark:bg-surface-container-low backdrop-blur-2xl docked left-0 w-64 fixed border-r border-white/5 shadow-2xl z-40">
+<div class="px-lg mb-xl flex flex-col gap-md">
+<h1 class="font-headline-md text-primary dark:text-primary uppercase tracking-widest text-headline-md">Trimly OS</h1>
+<div class="flex items-center gap-sm">
+<img alt="Executive Barber Profile" class="w-10 h-10 rounded-full border border-primary/30" data-alt="A close up portrait of a distinguished male barber with a short beard and styled hair, wearing a sleek black apron. The background is a dimly lit, high-end barbershop environment with warm gold lighting accents. The image embodies a cinematic luxury aesthetic, with deep blacks and sharp contrast highlighting his features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXm3XiP5J9o5XZw35MiothWCr6BbLb_avxUS8_vtUPdEkvD_Hgh5ncKyoMU9x5qZHooiGCBILWnMMNKwzZ5W-kUR7HT5GO1mRhm2T-sZNQGdbCYdtVOKa4mrBjE8f-5QI6SySMGsSzj5fQXlexhs_27jPjFRz_8d5_UKCQM6aW55m3qfhuG3aBTOuc4v0sAf2E0eluO-D_LfIlKKoA7ZF27E3KNJ4-Hp33EJnlmN5SWzbIrGVHXcXGhKui6ifGzndaaIDLaTHIVbxL">
+<div>
+<div class="font-title-sm text-title-sm text-on-surface">Executive Barber</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Elite Tier</div>
+</div>
+</div>
+<button class="mt-md magnetic-btn w-full py-sm px-md border border-primary rounded-DEFAULT text-primary font-title-sm text-title-sm flex justify-center items-center gap-sm relative overflow-hidden group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
+                New Appointment
+            </button>
+</div>
+<div class="flex-1 flex flex-col gap-xs"><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">grid_view</span> Dashboard
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Schedule
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">person_search</span> Clients
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">auto_awesome</span> AI Feed
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">campaign</span> Campaigns
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">monitoring</span> Analytics
+            </a>
+<a class="bg-primary/10 text-primary border-r-4 border-primary px-lg py-md flex items-center gap-sm font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">language</span> Website
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a></div>
+<div class="px-lg mt-auto flex flex-col gap-xs pt-lg border-t border-white/5">
+<a class="text-on-surface-variant hover:text-on-surface py-sm flex items-center gap-sm transition-all duration-400 hover:bg-white/5 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface py-sm flex items-center gap-sm transition-all duration-400 hover:bg-white/5 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">logout</span> Log Out
+            </a>
+</div>
+</nav>
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden flex justify-between items-center px-gutter w-full h-xxl bg-surface/80 dark:bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-white/10 shadow-sm">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tighter">Trimly</div>
+<div class="flex gap-md text-primary dark:text-primary-fixed-dim">
+<button class="hover:bg-white/5 transition-all duration-400 ease-out p-sm rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:bg-white/5 transition-all duration-400 ease-out p-sm rounded-full"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-gutter max-w-container-max mx-auto w-full">
+<header class="mb-xxl pt-xl md:pt-0">
+<h2 class="font-display-lg text-display-lg text-on-surface tracking-tighter mb-sm">Website Presence</h2>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">Orchestrate your digital storefront. High-fidelity previews and structural controls for an elite client booking experience.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Controls & Configuration -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Quick Toggles -->
+<section class="glass-panel rounded-xl p-lg">
+<h3 class="font-title-sm text-title-sm text-primary mb-md border-b border-white/10 pb-sm">Storefront Modules</h3>
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<span class="font-body-base text-body-base text-on-surface">Online Booking</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-surface appearance-none cursor-pointer z-10 transition-all duration-300 right-0 border-primary" id="toggle1" name="toggle1" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary-container cursor-pointer transition-colors duration-300" for="toggle1"></label>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-base text-body-base text-on-surface">Service Menu</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-surface appearance-none cursor-pointer z-10 transition-all duration-300 right-0 border-primary" id="toggle2" name="toggle2" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary-container cursor-pointer transition-colors duration-300" for="toggle2"></label>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-base text-body-base text-on-surface">Gallery Reveal</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-on-surface-variant border-4 border-surface appearance-none cursor-pointer z-10 transition-all duration-300 left-0" id="toggle3" name="toggle3" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-colors duration-300" for="toggle3"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Cinematic Copy Editor -->
+<section class="glass-panel rounded-xl p-lg">
+<h3 class="font-title-sm text-title-sm text-primary mb-md border-b border-white/10 pb-sm">Hero Narrative</h3>
+<div class="flex flex-col gap-md">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">Headline</label>
+<input class="input-line w-full text-on-surface font-headline-md text-title-sm py-sm placeholder:text-on-surface-variant/50" placeholder="Enter headline statement" type="text" value="Precision. Heritage. Execution.">
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">Subtext</label>
+<textarea class="input-line w-full text-on-surface font-body-sm text-body-sm py-sm placeholder:text-on-surface-variant/50 resize-none h-24" placeholder="Enter supporting narrative">Experience grooming elevated to an art form. Exclusive appointments for the modern gentleman.</textarea>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs">Primary CTA Action</label>
+<input class="input-line w-full text-on-surface font-body-base text-body-base py-sm placeholder:text-on-surface-variant/50" placeholder="Button text" type="text" value="Secure an Appointment">
+</div>
+</div>
+<div class="mt-md flex justify-end">
+<button class="magnetic-btn px-md py-xs bg-primary/10 text-primary border border-primary/30 rounded-DEFAULT font-label-caps text-label-caps relative overflow-hidden group">
+                            Commit Copy
+                        </button>
+</div>
+</section>
+<!-- Technical & SEO Panels -->
+<div class="grid grid-cols-2 gap-md">
+<section class="glass-panel rounded-xl p-md flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-primary">language</span>
+<span class="px-xs py-[2px] bg-emerald-900/30 text-emerald-400 font-label-caps text-[10px] rounded border border-emerald-500/20">Connected</span>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface">Domain</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">executivecut.com</p>
+</div>
+<button class="text-primary font-label-caps text-[11px] mt-md text-left hover:text-white transition-colors">Manage DNS →</button>
+</section>
+<section class="glass-panel rounded-xl p-md flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<span class="material-symbols-outlined text-primary">search</span>
+<span class="px-xs py-[2px] bg-primary/10 text-primary font-label-caps text-[10px] rounded border border-primary/20">Optimized</span>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface">SEO &amp; Social</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Metadata synced</p>
+</div>
+<button class="text-primary font-label-caps text-[11px] mt-md text-left hover:text-white transition-colors">Edit Metadata →</button>
+</section>
+</div>
+</div>
+<!-- Right Column: Live Preview -->
+<div class="lg:col-span-8 h-full min-h-[600px]">
+<div class="glass-panel rounded-xl p-xs h-full flex flex-col overflow-hidden relative">
+<!-- Browser Chrome -->
+<div class="flex items-center px-md py-sm border-b border-white/5 bg-surface-container-highest/50 rounded-t-lg">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-white/20"></div>
+<div class="w-3 h-3 rounded-full bg-white/20"></div>
+<div class="w-3 h-3 rounded-full bg-white/20"></div>
+</div>
+<div class="mx-auto px-lg py-xs bg-surface-container-lowest/50 rounded-DEFAULT font-body-sm text-[12px] text-on-surface-variant border border-white/5">
+                            https://executivecut.com
+                        </div>
+<div class="flex gap-2 text-on-surface-variant">
+<button><span class="material-symbols-outlined text-[18px]">desktop_windows</span></button>
+<button class="opacity-50 hover:opacity-100"><span class="material-symbols-outlined text-[18px]">smartphone</span></button>
+</div>
+</div>
+<!-- Simulated iFrame Content (The "Website Preview") -->
+<div class="flex-1 bg-surface-lowest relative overflow-hidden">
+<!-- Hero Section Preview -->
+<div class="absolute inset-0 z-0">
+<img alt="Barbershop Hero Image" class="w-full h-full object-cover opacity-40" data-alt="A wide cinematic shot of a high-end luxury barbershop interior. Dark charcoal walls contrast with vintage gold mirrors and plush black leather barber chairs. Soft, moody lighting creates deep shadows and highlights the polished metal tools and premium product bottles on the stations. The atmosphere is sophisticated, quiet, and exclusive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGfkiWbql84FahrkqmaoWkRtmGpp47wnYlQWkc6AvnZAjG6nsMOqvUTmkNrUjeDSYbCWZVKXkSBtymYUuRFfdhH-Fgqxs2mACLVWHF3MBfd5ua341W3QfHK_gX9guNDKPUmxG7gVK2pbExbHKqhRtA-cZ-wVMibrGS9V-cH0x2NuGwSdcza_ZNbNsgTlxcg8vkYdpNSs7MWKSkhvd4wfMh4obXlJgjMWtobaXj0oBJAJYPlyiO-yDNy8Rs1t3ClAMWvOHUuRJ7pk_2">
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col items-center justify-center p-xl text-center">
+<h1 class="font-headline-md text-[48px] text-white tracking-tighter leading-tight mb-md">Precision.<br>Heritage.<br>Execution.</h1>
+<p class="font-body-base text-on-surface-variant max-w-md mb-lg">Experience grooming elevated to an art form. Exclusive appointments for the modern gentleman.</p>
+<button class="bg-primary text-on-primary font-title-sm text-title-sm px-xl py-md rounded-DEFAULT hover:bg-primary-fixed transition-colors shadow-lg">
+                                Secure an Appointment
+                            </button>
+</div>
+<!-- Simulated Floating Nav Preview -->
+<div class="absolute top-md left-0 w-full px-xl z-20 flex justify-between items-center">
+<div class="font-headline-md text-title-sm text-primary tracking-widest uppercase">Executive</div>
+<div class="flex gap-md font-label-caps text-[10px] text-white/70">
+<span class="">Services</span>
+<span class="">Team</span>
+<span class="">Contact</span>
+</div>
+</div>
+</div>
+<!-- Preview Overlay Badge -->
+<div class="absolute bottom-md right-md bg-surface-container text-on-surface font-label-caps text-[10px] px-sm py-xs rounded border border-white/10 shadow-lg flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Preview
+                    </div>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

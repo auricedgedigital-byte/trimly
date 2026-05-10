@@ -1,0 +1,338 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trimly OS - Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#2f3131",
+                        "secondary": "#d8c4a4",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-container": "#c6b294",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "tertiary-container": "#a3a4a4",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#d2c4b5",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#281800",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#ebc07e",
+                        "background": "#131313",
+                        "primary-fixed": "#ffddae",
+                        "on-primary-container": "#4f3400",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#5e410b",
+                        "on-tertiary-container": "#383a3b",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-primary": "#432c00",
+                        "surface": "#131313",
+                        "secondary-container": "#53452d",
+                        "on-background": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-secondary-fixed": "#241a06",
+                        "secondary-fixed-dim": "#d8c4a4",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#4e4539",
+                        "primary": "#ebc07e",
+                        "inverse-primary": "#795921",
+                        "surface-dim": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#ebc07e",
+                        "on-secondary": "#3b2f18",
+                        "primary-container": "#c59d5f",
+                        "outline": "#9b8f81",
+                        "tertiary": "#c6c6c7",
+                        "surface-container": "#201f1f",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#53452d",
+                        "secondary-fixed": "#f5e0bf",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "xxl": "80px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "gutter": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-base": ["hankenGrotesk"],
+                        "label-caps": ["hankenGrotesk"],
+                        "body-sm": ["hankenGrotesk"],
+                        "headline-md": ["ebGaramond"],
+                        "title-sm": ["hankenGrotesk"],
+                        "display-lg": ["ebGaramond"]
+                    },
+                    "fontSize": {
+                        "body-base": ["16px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Glassmorphism utility classes */
+        .glass-card {
+            background-color: rgba(31, 31, 31, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+        }
+        .magnetic-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 400ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .magnetic-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(197, 157, 95, 0.2);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, rgba(235, 192, 126, 0.05) 25%, rgba(235, 192, 126, 0.15) 50%, rgba(235, 192, 126, 0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        /* Top Light Inner Glow */
+        .top-light-glow {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row antialiased">
+<!-- Mobile Top AppBar -->
+<header class="md:hidden flex justify-between items-center px-gutter w-full h-xxl bg-surface/80 dark:bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-sm border-b border-white/10">
+<div class="font-headline-md text-primary dark:text-primary tracking-tighter">
+            Trimly
+        </div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-white/5 transition-all duration-400 ease-out p-sm rounded-full">notifications</span>
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-white/5 transition-all duration-400 ease-out p-sm rounded-full">account_circle</span>
+</div>
+</header>
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-xl bg-surface-container dark:bg-surface-container-low backdrop-blur-2xl docked left-0 h-full w-64 fixed border-r border-white/5 shadow-2xl z-40">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-primary dark:text-primary uppercase tracking-widest mb-xs">Trimly OS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Elite Tier</p>
+</div>
+<div class="px-lg mb-lg">
+<button class="w-full bg-primary-container text-on-primary-container font-title-sm text-title-sm py-md rounded-lg magnetic-btn flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">add</span> New Appointment
+            </button>
+</div>
+<div class="flex-grow flex flex-col gap-sm"><a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">grid_view</span> Dashboard
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Schedule
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">person_search</span> Clients
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">auto_awesome</span> AI Feed
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="{{DATA:SCREEN:SCREEN_11}}">
+<span class="material-symbols-outlined">campaign</span> Campaigns
+</a>
+<a class="bg-primary/10 text-primary border-r-4 border-primary px-lg py-md flex items-center gap-sm font-title-sm text-title-sm" href="{{DATA:SCREEN:SCREEN_7}}">
+<span class="material-symbols-outlined">monitoring</span> Analytics
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="{{DATA:SCREEN:SCREEN_2}}">
+<span class="material-symbols-outlined">language</span> Website
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+</a></div>
+<div class="mt-auto flex flex-col gap-sm">
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+<a class="text-on-surface-variant hover:text-on-surface px-lg py-md flex items-center gap-sm transition-all duration-400 hover:bg-white/5 hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">logout</span> Log Out
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow md:ml-64 p-gutter md:p-xl max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Analytics Overview</h2>
+<p class="font-body-base text-body-base text-on-surface-variant">Performance metrics and AI-driven insights.</p>
+</div>
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="glass-card flex items-center px-md py-sm rounded-lg flex-grow md:flex-grow-0 cursor-pointer">
+<span class="material-symbols-outlined text-primary mr-sm">calendar_month</span>
+<span class="font-body-sm text-body-sm text-on-surface">Last 30 Days</span>
+<span class="material-symbols-outlined text-on-surface-variant ml-sm">arrow_drop_down</span>
+</div>
+<button class="glass-card px-lg py-sm rounded-lg font-title-sm text-title-sm text-primary magnetic-btn flex items-center gap-sm border-primary/30">
+<span class="material-symbols-outlined">download</span> Export
+                </button>
+</div>
+</div>
+<!-- Bento Grid Analytics -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Revenue Line Chart Area (Span 8) -->
+<div class="col-span-1 md:col-span-8 glass-card rounded-xl p-lg flex flex-col min-h-[400px]">
+<div class="flex justify-between items-center mb-lg">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Total Revenue</h3>
+<div class="font-display-lg text-display-lg text-primary mt-sm">$24,500<span class="font-title-sm text-title-sm text-tertiary ml-sm">.00</span></div>
+</div>
+<div class="flex items-center text-primary-container bg-primary-container/10 px-sm py-xs rounded">
+<span class="material-symbols-outlined text-[16px] mr-xs">trending_up</span>
+<span class="font-label-caps text-label-caps">+12.5%</span>
+</div>
+</div>
+<!-- Skeleton Chart -->
+<div class="flex-grow w-full relative mt-auto border-b border-l border-white/10 flex items-end justify-between pt-lg pb-sm px-sm">
+<div class="w-1/12 h-[30%] shimmer rounded-t-sm"></div>
+<div class="w-1/12 h-[45%] shimmer rounded-t-sm"></div>
+<div class="w-1/12 h-[40%] shimmer rounded-t-sm"></div>
+<div class="w-1/12 h-[60%] shimmer rounded-t-sm"></div>
+<div class="w-1/12 h-[55%] shimmer rounded-t-sm bg-primary/20"></div>
+<div class="w-1/12 h-[75%] shimmer rounded-t-sm"></div>
+<div class="w-1/12 h-[90%] shimmer rounded-t-sm bg-primary/40"></div>
+<!-- Decorative Line Overlay -->
+<svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path class="drop-shadow-[0_0_8px_rgba(235,192,126,0.3)]" d="M 0 70 Q 20 60 40 40 T 80 20 T 100 10" fill="none" stroke="rgba(235, 192, 126, 0.5)" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex justify-between mt-sm font-label-caps text-label-caps text-on-surface-variant">
+<span class="">Mon</span><span class="">Wed</span><span class="">Fri</span><span class="">Sun</span>
+</div>
+</div>
+<!-- AI Performance Metrics (Span 4) -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-lg">
+<div class="glass-card rounded-xl p-lg flex-grow flex flex-col justify-center">
+<div class="flex items-center gap-sm mb-md text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+<h3 class="font-title-sm text-title-sm text-on-surface">AI Time Saved</h3>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface mb-xs">42<span class="font-title-sm text-title-sm text-tertiary ml-sm">hrs</span></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant border-t border-white/10 pt-sm mt-sm">
+                        Automated scheduling and client communications saved you roughly one full work week this month.
+                    </p>
+</div>
+<div class="glass-card rounded-xl p-lg flex-grow flex flex-col justify-center relative overflow-hidden">
+<!-- Subtle Glow Background -->
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-primary-container/20 blur-3xl rounded-full"></div>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-sm">Conversion Lift</h3>
+<div class="font-display-lg text-display-lg text-primary">8.4%</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Increase in re-bookings via AI prompts.</p>
+</div>
+</div>
+<!-- Bookings Bar Chart (Span 6) -->
+<div class="col-span-1 md:col-span-6 glass-card rounded-xl p-lg">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-lg">Bookings by Service</h3>
+<div class="space-y-md">
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-xs">
+<span class="text-on-surface">Executive Fade</span>
+<span class="text-primary">142</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-xs">
+<span class="text-on-surface">Beard Sculpt</span>
+<span class="text-primary">89</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/70" style="width: 45%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-xs">
+<span class="text-on-surface">Hot Towel Shave</span>
+<span class="text-primary">56</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/40" style="width: 25%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Retention Gauge / Heat Map (Span 6) -->
+<div class="col-span-1 md:col-span-6 glass-card rounded-xl p-lg flex flex-col items-center justify-center relative">
+<h3 class="font-title-sm text-title-sm text-on-surface w-full mb-lg text-left">Client Retention Rate</h3>
+<!-- Pseudo Semi-circle Gauge -->
+<div class="relative w-48 h-24 overflow-hidden mb-md">
+<div class="absolute top-0 left-0 w-48 h-48 rounded-full border-[16px] border-surface-container-high"></div>
+<div class="absolute top-0 left-0 w-48 h-48 rounded-full border-[16px] border-transparent border-t-primary border-l-primary transform rotate-45"></div>
+</div>
+<div class="absolute bottom-lg text-center">
+<div class="font-display-lg text-display-lg text-primary leading-none">82%</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mt-xs">Loyal Clients</div>
+</div>
+</div>
+<!-- Review Growth Chart (Span 12) -->
+<div class="col-span-1 md:col-span-12 glass-card rounded-xl p-lg flex flex-col md:flex-row items-center gap-xl">
+<div class="md:w-1/3">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-sm">Review Growth</h3>
+<div class="flex items-center gap-xs text-primary mb-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="font-title-sm text-title-sm text-on-surface ml-sm">4.8</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Consistent 5-star ratings over the last quarter, driven by automated follow-up messages.
+                    </p>
+</div>
+<div class="md:w-2/3 w-full h-32 flex items-end gap-sm">
+<!-- Shimmer Bars representing reviews -->
+<div class="flex-1 bg-surface-container-high h-[20%] rounded-t"></div>
+<div class="flex-1 bg-surface-container-high h-[30%] rounded-t"></div>
+<div class="flex-1 bg-primary/20 h-[50%] rounded-t"></div>
+<div class="flex-1 bg-primary/40 h-[45%] rounded-t"></div>
+<div class="flex-1 bg-surface-container-high h-[60%] rounded-t"></div>
+<div class="flex-1 bg-primary/60 h-[80%] rounded-t"></div>
+<div class="flex-1 bg-primary h-[100%] rounded-t top-light-glow"></div>
+</div>
+</div>
+</div>
+</main>
+
+
+
+
+</body></html>
